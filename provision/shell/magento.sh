@@ -8,6 +8,8 @@ set -e
 
 apt-get -qqy update
 
+# Apache
+apt-get install -qqy apache2
 
 # Insecure installation of MySQL
 export DEBIAN_FRONTEND=noninteractive
