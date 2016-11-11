@@ -6,10 +6,10 @@ DB_PASSWORD="dbpassword"
 
 set -e
 
-apt -qqy update
+apt-get -qqy update
 
-debconf-set-selections <<< "mysql-server mysql-server/root_password password $MYSQL_ROOT_PASSWORD"
-debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $MYSQL_ROOT_PASSWORD"
 
-apt install -qqy mysql-server
+# Insecure installation of MySQL
+export DEBIAN_FRONTEND=noninteractive
+apt-get install -qqy mysql-server
 
