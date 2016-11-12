@@ -33,7 +33,7 @@ sudo apt-get install -qqy \
              libapache2-mod-php7.0 \
              composer
 
-sudo a2enmod php7.0
+sudo a2enmod php7.0 rewrite
 
 # Clean up base Apache install
 sudo a2dissite 000-default.conf
