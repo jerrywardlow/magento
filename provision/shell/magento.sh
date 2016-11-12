@@ -11,6 +11,8 @@ ADMIN_PASSWORD='adminpassword123'
 MAGENTO_PUBLIC=$1
 MAGENTO_PRIVATE=$2
 
+BASE_URL=$3
+
 echo "mysql-server mysql-server/root_password password $MYSQL_ROOT_PW" | sudo debconf-set-selections
 echo "mysql-server mysql-server/root_password_again password $MYSQL_ROOT_PW" | sudo debconf-set-selections
 
@@ -62,7 +64,7 @@ sudo sed -i "s/MAGENTO_PRIVATE/${MAGENTO_PRIVATE}/g" /root/.composer/auth.json
 sudo su -c "composer install -d /var/www/magento"
 
 # Run Magento installer
-sudo php /var/www/magento/bin/magento setup:install --base-url=http://127.0.0.1/ \
+sudo php /var/www/magento/bin/magento setup:install --base-url=http://$BASE_URL/ \
     --db-host=localhost --db-name=$DB_NAME --db-user=$DB_USER --db-password=$DB_PASSWORD \
     --admin-firstname=Magento --admin-lastname=Admin --admin-email=admin@example.com \
     --admin-user=$ADMIN_USER --admin-password=$ADMIN_PASSWORD --language=en_US \
