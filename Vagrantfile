@@ -12,7 +12,7 @@ node = {
 
 Vagrant.configure("2") do |config|
   config.vm.box = node[:box]
-  config.vm.provision :shell, path: node[:config], privileged: false
+  config.vm.provision :shell, path: node[:config], args: [ENV['MAGENTO_PUBLIC'], ENV['MAGENTO_PRIVATE']], privileged: false
   config.vm.hostname = node[:hostname]
   config.vm.network :private_network, ip: node[:ip]
   config.vm.synced_folder ".", "/vagrant", disabled: true
