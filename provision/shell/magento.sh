@@ -21,3 +21,12 @@ sudo apt-get install -qqy \
              composer
 
 sudo a2enmod php7.0
+
+# Clean up base Apache install
+sudo a2dissite 000-default.conf
+sudo rm -rf /var/www/html
+
+# Pull magento
+wget https://github.com/magento-2/magento-2-community/archive/master.tar.gz
+sudo mkdir -p /var/www/magento
+sudo tar --strip-components=1 -xzvf master.tar.gz -C /var/www/magento
