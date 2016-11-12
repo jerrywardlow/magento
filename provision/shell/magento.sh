@@ -3,21 +3,21 @@
 export DEBIAN_FRONTEND=noninteractive
 
 # Update apt cache
-apt-get update
+sudo apt-get update
 
 # Install packages
-apt-get install -qqy \
-        apache2 \
-        mysql-server \
-        php7.0 \
-        php7.0-curl \
-        php7.0-gd \
-        php7.0-intl \
-        php7.0-mbstring \
-        php7.0-mcrypt \
-        php7.0-xml \
-        php7.0-zip \
-        libapache2-mod-php7.0 \
-        composer
+sudo apt-get install -qqy \
+             apache2 \
+             mysql-server \
+             php7.0 \
+             php7.0-curl \
+             php7.0-gd \
+             php7.0-intl \
+             php7.0-mbstring \
+             php7.0-mcrypt \
+             php7.0-xml \
+             php7.0-zip \
+             libapache2-mod-php7.0 \
+             composer
 
-a2enmod php7.0
+sudo a2enmod php7.0
