@@ -34,10 +34,10 @@ sudo a2dissite 000-default.conf
 sudo rm -rf /var/www/html
 
 # Build out MySQL database and user
-sudo mysql -uroot -p$MYSQL_ROOT_PW-e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
-sudo mysql -uroot -p$MYSQL_ROOT_PW-e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASSWORD';
-                                      GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';
-                                      FLUSH PRIVILEGES;"
+sudo mysql -uroot -p$MYSQL_ROOT_PW -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
+sudo mysql -uroot -p$MYSQL_ROOT_PW -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASSWORD';
+                                       GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';
+                                       FLUSH PRIVILEGES;"
 
 # Pull magento
 wget https://github.com/magento-2/magento-2-community/archive/master.tar.gz
