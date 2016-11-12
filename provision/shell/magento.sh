@@ -5,6 +5,9 @@ DB_NAME='magento'
 DB_USER='magento'
 DB_PASSWORD='magento'
 
+ADMIN_USER='admin'
+ADMIN_PASSWORD='adminpassword123'
+
 MAGENTO_PUBLIC=$1
 MAGENTO_PRIVATE=$2
 
@@ -54,3 +57,13 @@ sudo mkdir -p /root/.composer
 sudo cp /sync/auth.json /root/.composer/auth.json
 sudo sed -i "s/MAGENTO_PUBLIC/${MAGENTO_PUBLIC}/g" /root/.composer/auth.json
 sudo sed -i "s/MAGENTO_PRIVATE/${MAGENTO_PRIVATE}/g" /root/.composer/auth.json
+
+# Install via Composer
+sudo su -c "composer install -d /var/www/magento"
+
+# Run Magento installer
+sudo php /var/www/magento/bin/magento setup:install --base-url=http://127.0.0.1/ \
+    --db-host=localhost --db-name=$DB_NAME --db-user=$DB_USER --db-password=$DB_PASSWORD \
+    --admin-firstname=Magento --admin-lastname=Admin --admin-email=admin@example.com \
+    --admin-user=$ADMIN_USER --admin-password=$ADMIN_PASSWORD --language=en_US \
+    --currency=USD --timezone=America/Los_Angeles --use-rewrites=1
