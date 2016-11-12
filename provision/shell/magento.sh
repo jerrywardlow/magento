@@ -1,22 +1,14 @@
 #!/bin/sh
 
-MYSQL_ROOT_PASSWORD="password"
-DB_USER="dbuser"
-DB_PASSWORD="dbpassword"
-
-set -e
-
-apt-get -qqy update
-
-# Apache
-apt-get install -qqy apache2
-
-# Insecure installation of MySQL
 export DEBIAN_FRONTEND=noninteractive
-apt-get install -qqy mysql-server
 
-# PHP and dependencies (deps pulled from Magento docs)
+# Update apt cache
+apt-get update
+
+# Install packages
 apt-get install -qqy \
+        apache2 \
+        mysql-server \
         php7.0 \
         php7.0-curl \
         php7.0-gd \
