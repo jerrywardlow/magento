@@ -15,6 +15,7 @@ sudo apt-get install -qqy \
              php7.0-intl \
              php7.0-mbstring \
              php7.0-mcrypt \
+             php7.0-mysql \
              php7.0-xml \
              php7.0-zip \
              libapache2-mod-php7.0 \
@@ -30,3 +31,4 @@ sudo rm -rf /var/www/html
 wget https://github.com/magento-2/magento-2-community/archive/master.tar.gz
 sudo mkdir -p /var/www/magento
 sudo tar --strip-components=1 -xzvf master.tar.gz -C /var/www/magento
+
