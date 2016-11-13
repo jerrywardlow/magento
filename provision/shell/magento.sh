@@ -78,5 +78,5 @@ sudo chown -R www-data:www-data /var/www/magento
 # Reload Apache
 sudo service apache2 reload
 
-php /var/www/magento/bin/magento indexer:reindex
-php /var/www/magento/bin/magento cache:clean
+sudo php /var/www/magento/bin/magento indexer:reindex
+sudo php /var/www/magento/bin/magento cache:clean
