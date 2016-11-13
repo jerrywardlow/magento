@@ -52,16 +52,17 @@ sudo mysql -uroot -p$MYSQL_ROOT_PW -e "CREATE USER '$DB_USER'@'localhost' IDENTI
 # Pull magento
 wget https://github.com/magento-2/magento-2-community/archive/master.tar.gz
 sudo mkdir -p /var/www/magento
-sudo tar --strip-components=1 -xzvf master.tar.gz -C /var/www/magento
+sudo chown -R $USER:$USER /var/www/magento
+tar --strip-components=1 -xzvf master.tar.gz -C /var/www/magento
 
 # Create composer credentials for Magento
-sudo mkdir -p /root/.composer
-sudo cp /sync/auth.json /root/.composer/auth.json
-sudo sed -i "s/MAGENTO_PUBLIC/${MAGENTO_PUBLIC}/g" /root/.composer/auth.json
-sudo sed -i "s/MAGENTO_PRIVATE/${MAGENTO_PRIVATE}/g" /root/.composer/auth.json
+mkdir -p ~/.composer
+cp /sync/auth.json ~/.composer/auth.json
+sed -i "s/MAGENTO_PUBLIC/${MAGENTO_PUBLIC}/g" ~/.composer/auth.json
+sed -i "s/MAGENTO_PRIVATE/${MAGENTO_PRIVATE}/g" ~/.composer/auth.json
 
 # Install via Composer
-sudo su -c "composer install -d /var/www/magento"
+composer install -d /var/www/magento
 
 # Run Magento installer
 sudo php /var/www/magento/bin/magento setup:install --base-url=http://$BASE_URL/ \
@@ -69,3 +70,9 @@ sudo php /var/www/magento/bin/magento setup:install --base-url=http://$BASE_URL/
     --admin-firstname=Magento --admin-lastname=Admin --admin-email=admin@example.com \
     --admin-user=$ADMIN_USER --admin-password=$ADMIN_PASSWORD --language=en_US \
     --currency=USD --timezone=America/Los_Angeles --use-rewrites=1
+
+# Change ownership of web root
+sudo chown -R www-data:www-data /var/www/magento
+
+# Reload Apache
+sudo service apache2 reload
