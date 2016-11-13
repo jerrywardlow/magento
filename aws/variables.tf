@@ -6,6 +6,7 @@ variable "region" {
 variable "vpc_cidr" {
     description = "Main CIDR block"
     default = "10.10.0.0/16"
+}
 
 variable "public_cidr" {
     description = "CIDR blocks for public subnets"
