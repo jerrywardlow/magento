@@ -9,3 +9,5 @@ resource "aws_vpc" "default" {
         Name = "magento"
     }
 }
+
+data "aws_availability_zones" "available" {}
