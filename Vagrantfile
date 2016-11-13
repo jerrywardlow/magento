@@ -10,13 +10,24 @@ node = {
   syncguest: "/sync"
 }
 
+shell_script_args = [
+  ENV['MAGENTO_PUBLIC'],
+  ENV['MAGENTO_PRIVATE'],
+  node[:ip]
+]
+
 Vagrant.configure("2") do |config|
   config.vm.box = node[:box]
-  config.vm.provision :shell, path: node[:config], args: [ENV['MAGENTO_PUBLIC'], ENV['MAGENTO_PRIVATE'], node[:ip]], privileged: false
   config.vm.hostname = node[:hostname]
   config.vm.network :private_network, ip: node[:ip]
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.synced_folder node[:synchost], node[:syncguest]
+
+  config.vm.provision :shell do |p|
+    p.path = node[:config]
+    p.args = shell_script_args
+    p.privileged = false
+  end
 
   config.vm.provider "virtualbox" do |vb|
     vb.name = node[:hostname]
