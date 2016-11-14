@@ -2,7 +2,7 @@
 resource "aws_subnet" "private" {
     count = 3
     vpc_id = "${aws_vpc.default.id}"
-    cidr_block = "${lookup(var.private_cidr, count.index)}"
+    cidr_block = "${var.private_cidr[count.index]}"
     availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
     map_public_ip_on_launch = false
     tags {
