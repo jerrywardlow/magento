@@ -12,15 +12,16 @@ resource "aws_subnet" "private" {
 
 # Routing table and association
 resource "aws_route_table" "private" {
+    count = 3
     vpc_id = "${aws_vpc.default.id}"
     route {
         cidr_block = "0.0.0.0/0"
-        instance_id = "pass"
+        instance_id = "${element(aws_instance.nat.*.id, count.index)}"
     }
 }
 
 resource "aws_route_table_association" "private" {
     count = 3
     subnet_id = "${element(aws_subnet.private.*.id, count.index)}"
-    route_table_id = "${aws_route_table.private.id}"
+    route_table_id = "${element(aws_route_table.private.*.id, count.index)}"
 }
