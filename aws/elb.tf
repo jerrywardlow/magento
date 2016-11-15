@@ -2,7 +2,7 @@
 resource "aws_elb" "app" {
     name = "magento-app-elb"
     subnets = ["${aws_subnet.public.*.id}"]
-    security_groups = ["pass"]
+    security_groups = ["${aws_security_group.elb.id}"]
 
     listener {
       instance_port = 80
