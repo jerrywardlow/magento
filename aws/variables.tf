@@ -25,3 +25,10 @@ variable "private_cidr" {
         "10.10.103.0/24"
     ]
 }
+
+# AMI
+
+variable "nat-ami" {
+    description = "Amazon Linux AMI VPC NAT x86_64 HVM GP2"
+    default = "ami-69ae8259"
+}
