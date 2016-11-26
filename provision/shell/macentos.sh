@@ -50,3 +50,9 @@ yum -y install \
 # Composer
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/bin/composer
+
+# Build database
+mysql -uroot -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
+mysql -uroot -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASSWORD';
+                 GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';
+                 FLUSH PRIVILEGES;"
