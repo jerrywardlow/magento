@@ -27,6 +27,8 @@ mkdir -p /etc/httpd/sites-enabled
 echo "IncludeOptional sites-enabled/*.conf" >> /etc/httpd/conf/httpd.conf
 cp /sync/magento.conf /etc/httpd/sites-available/
 ln -s /etc/httpd/sites-available/magento.conf /etc/httpd/sites-enabled/magento.conf
+usermod -aG apache $USER
+chgrp -R apache /var/www/magento
 
 # MariaDB
 yum install -y mariadb-server mariadb
@@ -59,3 +61,7 @@ mysql -uroot -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
 mysql -uroot -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASSWORD';
                  GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';
                  FLUSH PRIVILEGES;"
+
+# Pull magento
+wget https://github.com/magento-2/magento-2-community/archive/master.tar.gz
+tar --strip-components=1 -xzvf master.tar.gz -C /var/www/magento
