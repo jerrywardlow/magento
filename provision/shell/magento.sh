@@ -42,7 +42,7 @@ sudo a2dissite 000-default.conf
 sudo rm -rf /var/www/html
 sudo cp /sync/magento.conf /etc/apache2/sites-available/
 sudo a2ensite magento.conf
-sudo usermod -aG www-data ubuntu
+sudo usermod -aG www-data $USER
 
 # Build out MySQL database and user
 sudo mysql -uroot -p$MYSQL_ROOT_PW -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
