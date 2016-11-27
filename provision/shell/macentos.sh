@@ -1,8 +1,17 @@
 #!/bin/sh
 
+MYSQL_ROOT_PW='rootpw'
 DB_NAME='magento'
 DB_USER='magento'
 DB_PASSWORD='magento'
+
+ADMIN_USER='admin'
+ADMIN_PASSWORD='adminpassword123'
+
+MAGENTO_PUBLIC=$1
+MAGENTO_PRIVATE=$2
+
+BASE_URL=$3
 
 # Repository
 yum install -y http://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-1.0-14.ius.centos7.noarch.rpm
