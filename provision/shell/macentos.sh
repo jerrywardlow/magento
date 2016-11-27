@@ -21,10 +21,12 @@ yum -y update
 yum install -y httpd
 systemctl start httpd.service
 systemctl enable httpd.service
+mkdir -p /var/www/magento
 mkdir -p /etc/httpd/sites-available
 mkdir -p /etc/httpd/sites-enabled
 echo "IncludeOptional sites-enabled/*.conf" >> /etc/httpd/conf/httpd.conf
-mkdir -p /var/www/magento
+cp /sync/magento.conf /etc/httpd/sites-available/
+ln -s /etc/httpd/sites-available/magento.conf /etc/httpd/sites-enabled/magento.conf
 
 # MariaDB
 yum install -y mariadb-server mariadb
