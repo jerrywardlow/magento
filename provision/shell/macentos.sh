@@ -65,3 +65,19 @@ mysql -uroot -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASSWORD'
 # Pull magento
 wget https://github.com/magento-2/magento-2-community/archive/master.tar.gz
 tar --strip-components=1 -xzvf master.tar.gz -C /var/www/magento
+
+# Create composer credentials for Magento
+mkdir -p ~/.composer
+cp /sync/auth.json ~/.composer/auth.json
+sed -i "s/MAGENTO_PUBLIC/${MAGENTO_PUBLIC}/g" ~/.composer/auth.json
+sed -i "s/MAGENTO_PRIVATE/${MAGENTO_PRIVATE}/g" ~/.composer/auth.json
+
+# Install via Composer
+composer install -d /var/www/magento
+
+# Run Magento installer
+sudo php /var/www/magento/bin/magento setup:install --base-url=http://$BASE_URL/ \
+    --db-host=localhost --db-name=$DB_NAME --db-user=$DB_USER --db-password=$DB_PASSWORD \
+    --admin-firstname=Magento --admin-lastname=Admin --admin-email=admin@example.com \
+    --admin-user=$ADMIN_USER --admin-password=$ADMIN_PASSWORD --language=en_US \
+    --currency=USD --timezone=America/Los_Angeles --use-rewrites=1
