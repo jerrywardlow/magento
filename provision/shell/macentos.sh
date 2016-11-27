@@ -13,31 +13,23 @@ MAGENTO_PRIVATE=$2
 
 BASE_URL=$3
 
-# Repository
+# IUS Repository
 yum install -y http://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-1.0-14.ius.centos7.noarch.rpm
-
 yum -y update
-
 
 # Apache
 yum install -y httpd
 systemctl start httpd.service
 systemctl enable httpd.service
-
 mkdir -p /etc/httpd/sites-available
 mkdir -p /etc/httpd/sites-enabled
-
 echo "IncludeOptional sites-enabled/*.conf" >> /etc/httpd/conf/httpd.conf
-
 mkdir -p /var/www/magento
-
 
 # MariaDB
 yum install -y mariadb-server mariadb
-
 systemctl start mariadb.service
 systemctl enable mariadb.service
-
 
 # PHP
 yum -y install \
