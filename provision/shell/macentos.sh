@@ -16,6 +16,7 @@ BASE_URL=$3
 # IUS Repository
 yum install -y http://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-1.0-14.ius.centos7.noarch.rpm
 yum -y update
+yum -y install wget
 
 # Apache
 yum install -y httpd
@@ -24,7 +25,7 @@ systemctl enable httpd.service
 mkdir -p /var/www/magento
 mkdir -p /etc/httpd/sites-available
 mkdir -p /etc/httpd/sites-enabled
-echo "IncludeOptional sites-enabled/*.conf" >> /etc/httpd/conf/httpd.conf
+echo "IncludeOptional sites-enabled/*.conf" | sudo tee --append  /etc/httpd/conf/httpd.conf
 cp /sync/magento.conf /etc/httpd/sites-available/
 ln -s /etc/httpd/sites-available/magento.conf /etc/httpd/sites-enabled/magento.conf
 usermod -aG apache $USER
@@ -67,6 +68,7 @@ wget https://github.com/magento-2/magento-2-community/archive/master.tar.gz
 tar --strip-components=1 -xzvf master.tar.gz -C /var/www/magento
 
 # Create composer credentials for Magento
+# Careful with permissions/locations/user here RE: composer install
 mkdir -p ~/.composer
 cp /sync/auth.json ~/.composer/auth.json
 sed -i "s/MAGENTO_PUBLIC/${MAGENTO_PUBLIC}/g" ~/.composer/auth.json
