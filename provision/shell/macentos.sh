@@ -31,10 +31,13 @@ ln -s /etc/httpd/sites-available/magento.conf /etc/httpd/sites-enabled/magento.c
 usermod -aG apache $USER
 chgrp -R apache /var/www/magento
 
-# MariaDB
-yum install -y mariadb-server mariadb
-systemctl start mariadb.service
-systemctl enable mariadb.service
+# MySQL
+wget https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+rpm -ivh mysql57-community-release-el7-9.noarch.rpm
+yum -y update
+yum install -y mysql-community-server
+systemctl start mysqld.service
+systemctl enable mysqld.service
 
 # PHP
 yum -y install \
