@@ -1,12 +1,12 @@
 #!/bin/sh
 
-MYSQL_ROOT_PW='rootpw'
+MYSQL_ROOT_PW='ROOTpw123#!'
 DB_NAME='magento'
 DB_USER='magento'
-DB_PASSWORD='magento'
+DB_PASSWORD='MAGento123#!'
 
 ADMIN_USER='admin'
-ADMIN_PASSWORD='adminpassword123'
+ADMIN_PASSWORD='ADMINpassword123#!'
 
 MAGENTO_PUBLIC=$1
 MAGENTO_PRIVATE=$2
@@ -38,6 +38,8 @@ yum update -y
 yum install -y mysql-community-server
 systemctl start mysqld.service
 systemctl enable mysqld.service
+TEMP_ROOT_PW=`sudo grep 'temporary password' /var/log/mysqld.log | awk '{ print $NF }'`
+mysqladmin -uroot -p$TEMP_ROOT_PW password $MYSQL_ROOT_PW
 
 # PHP
 yum install -y \
@@ -61,10 +63,10 @@ curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/bin/composer
 
 # Build database
-mysql -uroot -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
-mysql -uroot -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASSWORD';
-                 GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';
-                 FLUSH PRIVILEGES;"
+mysql -uroot -p$MYSQL_ROOT_PW -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
+mysql -uroot -p$MYSQL_ROOT_PW -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASSWORD';
+                                  GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';
+                                  FLUSH PRIVILEGES;"
 
 # Pull magento
 wget https://github.com/magento-2/magento-2-community/archive/master.tar.gz
