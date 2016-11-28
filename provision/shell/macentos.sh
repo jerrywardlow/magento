@@ -15,8 +15,8 @@ BASE_URL=$3
 
 # IUS Repository
 yum install -y http://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-1.0-14.ius.centos7.noarch.rpm
-yum -y update
-yum -y install wget
+yum update -y
+yum install -y wget
 
 # Apache
 yum install -y httpd
@@ -34,13 +34,13 @@ chgrp -R apache /var/www/magento
 # MySQL
 wget https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
 rpm -ivh mysql57-community-release-el7-9.noarch.rpm
-yum -y update
+yum update -y
 yum install -y mysql-community-server
 systemctl start mysqld.service
 systemctl enable mysqld.service
 
 # PHP
-yum -y install \
+yum install -y \
     php70u \
     php70u-pdo \
     php70u-mysqlnd \
