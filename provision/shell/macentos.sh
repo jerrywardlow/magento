@@ -14,7 +14,7 @@ MAGENTO_PRIVATE=$2
 BASE_URL=$3
 
 # IUS Repository
-yum install -y http://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-1.0-14.ius.centos7.noarch.rpm
+yum install -y https://centos7.iuscommunity.org/ius-release.rpm
 yum update -y
 yum install -y wget
 
@@ -81,6 +81,8 @@ sed -i "s/MAGENTO_PRIVATE/${MAGENTO_PRIVATE}/g" ~/.composer/auth.json
 
 # Install via Composer
 composer install -d /var/www/magento
+
+# File permissions
 
 # Run Magento installer
 sudo php /var/www/magento/bin/magento setup:install --base-url=http://$BASE_URL/ \
