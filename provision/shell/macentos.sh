@@ -28,8 +28,6 @@ mkdir -p /etc/httpd/sites-enabled
 echo "IncludeOptional sites-enabled/*.conf" | sudo tee --append  /etc/httpd/conf/httpd.conf
 cp /sync/magento.conf /etc/httpd/sites-available/
 ln -s /etc/httpd/sites-available/magento.conf /etc/httpd/sites-enabled/magento.conf
-usermod -aG apache $USER
-chgrp -R apache /var/www/magento
 
 # MySQL
 wget https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
