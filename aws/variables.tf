@@ -3,6 +3,8 @@ variable "region" {
     default = "us-west-2"
 }
 
+data "aws_availability_zones" "available" {}
+
 variable "vpc_cidr" {
     description = "Main CIDR block"
     default = "10.10.0.0/16"
