@@ -82,6 +82,9 @@ composer install -d /var/www/magento
 
 # File permissions
 
+# Reload Apache
+systemctl reload httpd.service
+
 # Run Magento installer
 sudo php /var/www/magento/bin/magento setup:install --base-url=http://$BASE_URL/ \
     --db-host=localhost --db-name=$DB_NAME --db-user=$DB_USER --db-password=$DB_PASSWORD \
