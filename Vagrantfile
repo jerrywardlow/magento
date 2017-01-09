@@ -10,6 +10,15 @@ node = {
   syncguest: "/sync"
 }
 
+# node = {
+#   hostname: "magento",
+#   box: "centos/7",
+#   config: "provision/shell/macentos.sh",
+#   ip: "192.168.56.50",
+#   synchost: "sync/",
+#   syncguest: "/sync"
+# }
+
 shell_script_args = [
   ENV['MAGENTO_PUBLIC'],
   ENV['MAGENTO_PRIVATE'],
