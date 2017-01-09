@@ -87,7 +87,16 @@ systemctl reload httpd.service
 
 # Run Magento installer
 sudo php /var/www/magento/bin/magento setup:install --base-url=http://$BASE_URL/ \
-    --db-host=localhost --db-name=$DB_NAME --db-user=$DB_USER --db-password=$DB_PASSWORD \
-    --admin-firstname=Magento --admin-lastname=Admin --admin-email=admin@example.com \
-    --admin-user=$ADMIN_USER --admin-password=$ADMIN_PASSWORD --language=en_US \
-    --currency=USD --timezone=America/Los_Angeles --use-rewrites=1
+                                                    --db-host=localhost \
+                                                    --db-name=$DB_NAME \
+                                                    --db-user=$DB_USER \
+                                                    --db-password=$DB_PASSWORD \
+                                                    --admin-firstname=Magento \
+                                                    --admin-lastname=Admin \
+                                                    --admin-email=admin@example.com \
+                                                    --admin-user=$ADMIN_USER \
+                                                    --admin-password=$ADMIN_PASSWORD \
+                                                    --language=en_US \
+                                                    --currency=USD \
+                                                    --timezone=America/Los_Angeles \
+                                                    --use-rewrites=1
