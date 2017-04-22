@@ -88,7 +88,7 @@ sudo php /var/www/magento/bin/magento setup:install --base-url=http://$BASE_URL/
 sudo chown -R www-data:www-data /var/www/magento
 
 # Reload Apache
-sudo service apache2 reload
+sudo systemctl reload apache2.service
 
 sudo php /var/www/magento/bin/magento indexer:reindex
 sudo php /var/www/magento/bin/magento cache:clean
