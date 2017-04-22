@@ -5,6 +5,9 @@ DB_NAME='magento'
 DB_USER='magento'
 DB_PASSWORD='magento'
 
+ADMIN_FISTNAME='Magento'
+ADMIN_LASTNAME='Admin'
+ADMIN_EMAIL='admin@example.com'
 ADMIN_USER='admin'
 ADMIN_PASSWORD='adminpassword123'
 
@@ -71,9 +74,9 @@ sudo php /var/www/magento/bin/magento setup:install --base-url=http://$BASE_URL/
                                                     --db-name=$DB_NAME \
                                                     --db-user=$DB_USER \
                                                     --db-password=$DB_PASSWORD \
-                                                    --admin-firstname=Magento \
-                                                    --admin-lastname=Admin \
-                                                    --admin-email=admin@example.com \
+                                                    --admin-firstname=$ADMIN_FIRSTNAME \
+                                                    --admin-lastname=$ADMIN_LASTNAME \
+                                                    --admin-email=$ADMIN_EMAIL \
                                                     --admin-user=$ADMIN_USER \
                                                     --admin-password=$ADMIN_PASSWORD \
                                                     --language=en_US \
