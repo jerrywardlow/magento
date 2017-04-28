@@ -22,6 +22,4 @@ resource "aws_elb" "app" {
     tags {
         group = "mage-elb"
     }
-
-    instances = ["pass"]
 }
