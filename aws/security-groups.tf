@@ -110,3 +110,32 @@ resource "aws_security_group" "app_asg" {
         groups = "mage-sg"
     }
 }
+
+# ElastiCache security group
+resource "aws_security_group" "redis" {
+    name = "mage-redis"
+    description = "Security group for Redis ElastiCache cluster"
+    vpc_id = "${aws_vpc.default.id}"
+
+    ingress {
+        from_port = "${var.elasticache-port}"
+        to_port = "${var.elasticache-port}"
+        protocol = "tcp"
+        security_groups = [
+            "${aws_security_group.nat.id}",
+            "${aws_security_group.app_asg.id}"
+        ]
+    }
+
+    egress {
+        from_port = 0
+        to_port = 0
+        protocol = -1
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    tags {
+        Name = "magento-redis"
+        group = "mage-sg"
+    }
+}
