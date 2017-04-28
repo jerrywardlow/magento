@@ -1,7 +1,7 @@
 # Load balancer
 resource "aws_elb" "app" {
     name = "magento-app-elb"
-    subnets = ["${aws_subnet.public.*.id}"]
+    subnets = ["${aws_subnet.private.*.id}"]
     security_groups = ["${aws_security_group.elb.id}"]
 
     listener {
