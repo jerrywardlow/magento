@@ -139,3 +139,32 @@ resource "aws_security_group" "redis" {
         group = "mage-sg"
     }
 }
+
+# RDS security group
+resource "aws_security_group" "mysql" {
+    name = "mage-mysql"
+    description = "Security group for RDS cluster"
+    vpc_id = "${aws_vpc.default.id}"
+
+    ingress {
+        from_port = "${var.rds-port}"
+        to_port = "${var.rds-port}"
+        protocol = "tcp"
+        security_groups = [
+            "${aws_security_group.nat.id}",
+            "${aws_security_group.app_asg.id}"
+        ]
+    }
+
+    egress {
+        from_port = 0
+        to_port = 0
+        protocol = -1
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    tags {
+        Name = "magento-mysql"
+        group = "mage-sg"
+    }
+}
