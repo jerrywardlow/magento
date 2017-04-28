@@ -13,10 +13,10 @@ resource "aws_elb" "app" {
 
     health_check {
       healthy_threshold = 2
-      unhealthy_threshold = 2
-      timeout = 3
+      unhealthy_threshold = 5
+      timeout = 5
       target = "HTTP:80/"
-      interval = 30
+      interval = 10
     }
 
     tags {
