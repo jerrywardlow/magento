@@ -19,5 +19,9 @@ resource "aws_elb" "app" {
       interval = 30
     }
 
+    tags {
+        group = "mage-elb"
+    }
+
     instances = ["pass"]
 }
