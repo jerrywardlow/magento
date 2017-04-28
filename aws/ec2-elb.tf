@@ -12,11 +12,11 @@ resource "aws_elb" "app" {
     }
 
     health_check {
-      healthy_threshold = 2
-      unhealthy_threshold = 5
-      timeout = 5
-      target = "HTTP:80/"
-      interval = 10
+      healthy_threshold = "${var.elb-healthy-threshold}"
+      unhealthy_threshold = "${var.elb-unhealthy-threshold}"
+      timeout = "${var.elb-timeout}"
+      target = "${var.elb-target}"
+      interval = "${var.elb-interval}"
     }
 
     tags {
