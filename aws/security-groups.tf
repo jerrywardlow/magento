@@ -72,8 +72,8 @@ resource "aws_security_group" "nat" {
 }
 
 # Application security group
-resource "aws_security_group" "app_asg" {
-    name = "magento-app-asg"
+resource "aws_security_group" "app" {
+    name = "magento-app"
     description = "Security group for application ASG"
     vpc_id = "${aws_vpc.default.id}"
 
