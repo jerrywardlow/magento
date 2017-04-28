@@ -1,14 +1,14 @@
 # Load balancer
 resource "aws_elb" "app" {
-    name = "magento-app-elb"
+    name = "${var.elb-name}"
     subnets = ["${aws_subnet.private.*.id}"]
     security_groups = ["${aws_security_group.elb.id}"]
 
     listener {
-      instance_port = 80
-      instance_protocol = "http"
-      lb_port = 80
-      lb_protocol = "http"
+      instance_port = "${var.elb-instance-port}"
+      lb_port = "${var.elb-lb-port}"
+      instance_protocol = "${var.elb-instance-protocol}"
+      lb_protocol = "${var.elb-lb-protocol}"
     }
 
     health_check {
