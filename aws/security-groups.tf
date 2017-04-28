@@ -33,7 +33,7 @@ resource "aws_security_group" "elb" {
 
 # NAT
 resource "aws_security_group" "nat" {
-    name = "wordpress-nat"
+    name = "magento-nat"
     description = "Security group for NAT instance"
     vpc_id = "${aws_vpc.default.id}"
 
@@ -73,7 +73,7 @@ resource "aws_security_group" "nat" {
 
 # Application security group
 resource "aws_security_group" "app_asg" {
-    name = "mage-app-asg"
+    name = "magento-app-asg"
     description = "Security group for application ASG"
     vpc_id = "${aws_vpc.default.id}"
 
@@ -113,7 +113,7 @@ resource "aws_security_group" "app_asg" {
 
 # ElastiCache security group
 resource "aws_security_group" "redis" {
-    name = "mage-redis"
+    name = "magento-redis"
     description = "Security group for Redis ElastiCache cluster"
     vpc_id = "${aws_vpc.default.id}"
 
@@ -142,7 +142,7 @@ resource "aws_security_group" "redis" {
 
 # RDS security group
 resource "aws_security_group" "mysql" {
-    name = "mage-mysql"
+    name = "magento-mysql"
     description = "Security group for RDS cluster"
     vpc_id = "${aws_vpc.default.id}"
 
