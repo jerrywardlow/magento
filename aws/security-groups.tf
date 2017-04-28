@@ -1,7 +1,7 @@
 # Load balancer security group
 resource "aws_security_group" "elb" {
     name = "magento-elb"
-    description = "All app server traffic on port 80"
+    description = "ELB secuity group"
     vpc_id = "${aws_vpc.default.id}"
 
     ingress {
