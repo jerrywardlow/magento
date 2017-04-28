@@ -20,6 +20,7 @@ resource "aws_security_group" "elb" {
 
     tags {
         Name = "magento-elb"
+        group = "mage-sg"
     }
 }
 
@@ -52,5 +53,6 @@ resource "aws_security_group" "nat" {
 
     tags {
         Name = "magento-nat"
+        group = "mage-sg"
     }
 }
