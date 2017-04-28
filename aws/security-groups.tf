@@ -123,7 +123,7 @@ resource "aws_security_group" "redis" {
         protocol = "tcp"
         security_groups = [
             "${aws_security_group.nat.id}",
-            "${aws_security_group.app_asg.id}"
+            "${aws_security_group.app.id}"
         ]
     }
 
@@ -152,7 +152,7 @@ resource "aws_security_group" "mysql" {
         protocol = "tcp"
         security_groups = [
             "${aws_security_group.nat.id}",
-            "${aws_security_group.app_asg.id}"
+            "${aws_security_group.app.id}"
         ]
     }
 
@@ -180,7 +180,7 @@ resource "aws_security_group" "efs" {
         to_port = 2049
         protocol = "tcp"
         security_groups = [
-            "${aws_security_group.app_asg.id}"
+            "${aws_security_group.app.id}"
         ]
     }
 
