@@ -2,7 +2,8 @@
 variable "ssh-access-list" {
     description = "SSH access control list"
     default = [
-        "8.8.8.8/32",
-        "169.254.169.254/32"
+        "192.0.2.0/24",
+        "198.51.100.0/24",
+        "203.0.113.0/24"
     ]
 }
