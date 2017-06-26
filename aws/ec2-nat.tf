@@ -7,7 +7,7 @@ resource "aws_eip" "nat" {
 resource "aws_instance" "nat" {
     count = 3
     ami = "${data.aws_ami.nat.id}"
-    instance_type = "${var.nat-instance-type}"
+    instance_type = "${var.ec2-nat-instance-type}"
     subnet_id = "${element(aws_subnet.public.*.id, count.index)}"
     vpc_security_group_ids = ["${aws_security_group.nat.id}"]
     source_dest_check = false
