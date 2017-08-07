@@ -92,4 +92,4 @@ sudo systemctl reload apache2.service
 
 # bin/magento tasks
 sudo php /var/www/magento/bin/magento indexer:reindex
-sudo php /var/www/magento/bin/magento cache:clean
+sudo php /var/www/magento/bin/magento cache:flush
