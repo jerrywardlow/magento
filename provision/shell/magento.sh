@@ -54,7 +54,7 @@ sudo mysql -uroot -p$MYSQL_ROOT_PW -e "CREATE USER '$DB_USER'@'localhost' IDENTI
                                        FLUSH PRIVILEGES;"
 
 # Pull magento
-wget https://github.com/magento-2/magento-2-community/archive/master.tar.gz
+wget https://github.com/magento/magento2/archive/2.1.7.tar.gz
 sudo mkdir -p /var/www/magento
 sudo chown -R $USER:$USER /var/www/magento
 tar --strip-components=1 -xzvf master.tar.gz -C /var/www/magento
