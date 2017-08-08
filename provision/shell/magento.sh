@@ -11,6 +11,8 @@ ADMIN_EMAIL='admin@example.com'
 ADMIN_USER='admin'
 ADMIN_PASSWORD='adminpassword123'
 
+MAGENTO_VERSION='2.1.7'
+
 MAGENTO_PUBLIC=$1
 MAGENTO_PRIVATE=$2
 
@@ -54,7 +56,7 @@ sudo mysql -uroot -p$MYSQL_ROOT_PW -e "CREATE USER '$DB_USER'@'localhost' IDENTI
                                        FLUSH PRIVILEGES;"
 
 # Pull magento
-wget https://github.com/magento/magento2/archive/2.1.7.tar.gz
+wget https://github.com/magento/magento2/archive/$MAGENTO_VERSION.tar.gz
 sudo mkdir -p /var/www/magento
 sudo chown -R $USER:$USER /var/www/magento
 tar --strip-components=1 -xzvf master.tar.gz -C /var/www/magento
