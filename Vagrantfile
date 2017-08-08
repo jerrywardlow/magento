@@ -10,6 +10,8 @@ node = {
   syncguest: "/sync"
 }
 
+magento_version = '2.1.7'
+
 # node = {
 #   hostname: "magento",
 #   box: "centos/7",
@@ -22,6 +24,7 @@ node = {
 shell_script_args = [
   ENV['MAGENTO_PUBLIC'],
   ENV['MAGENTO_PRIVATE'],
+  magento_version,
   node[:ip]
 ]
 

@@ -11,12 +11,12 @@ ADMIN_EMAIL='admin@example.com'
 ADMIN_USER='admin'
 ADMIN_PASSWORD='adminpassword123'
 
-MAGENTO_VERSION='2.1.7'
-
 MAGENTO_PUBLIC=$1
 MAGENTO_PRIVATE=$2
 
-BASE_URL=$3
+MAGENTO_VERSION=$3
+
+BASE_URL=$4
 
 echo "mysql-server mysql-server/root_password password $MYSQL_ROOT_PW" | sudo debconf-set-selections
 echo "mysql-server mysql-server/root_password_again password $MYSQL_ROOT_PW" | sudo debconf-set-selections
