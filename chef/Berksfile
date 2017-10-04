@@ -1,0 +1,5 @@
+source 'https://supermarket.chef.io'
+
+cookbook 'cas_magento',
+    tag: '~> 1.0',
+    git: 'https://github.com/cascadia-cookbooks/magento.git'
